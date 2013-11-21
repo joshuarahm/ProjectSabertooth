@@ -1,4 +1,5 @@
 !!! 5
+- @active_tab = "item1"
 %html
   %head
     %title Page of doom
@@ -15,9 +16,9 @@
         %a.navbar-brand Kroger® brand DocShare
         .collapse.navbar-collapse.navbar-ex1-collapse.navbar-right
           %ul.nav.navbar-nav
-            %li
-              %a item1
-            %li
-              %a item2
+            %li{:class=>('active' if @active_tab == 'item1')}
+              %a{:href=>login_index_path} item1
+            %li{:class=>('active' if @active_tab == 'item2')}
+              %a{:href=>login_index_path} item2
       #main
         = yield
