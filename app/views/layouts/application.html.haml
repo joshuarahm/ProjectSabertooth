@@ -16,9 +16,11 @@
         %a.navbar-brand Project Sabertooth
         .collapse.navbar-collapse.navbar-ex1-collapse.navbar-right
           %ul.nav.navbar-nav
-            %li{:class=>('active' if @active_tab == 'item1')}
-              %a{:href=>login_index_path} item1
-            %li{:class=>('active' if @active_tab == 'item2')}
-              %a{:href=>login_index_path} item2
+            %li{:class=>('active' if @active_tab == 'Home')}
+              %a{:href=>home_index_path} Home
+            %li{:class=>('active' if @active_tab == 'AboutSaberTooth')}
+              %a{:href=>about_index_path} About
+            %li{:class=>('active' if @active_tab == 'Log In')}
+              %a{:href=>login_index_path} Login
       #main
         = yield
