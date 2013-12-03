@@ -1,5 +1,5 @@
 !!! 5
-- @active_tab = "item1"
+- @active_tab = "Home"
 %html
   %head
     %title Project Sabertooth
@@ -11,16 +11,7 @@
     = csrf_meta_tags
 
   %body.scheme-primary-bright
-    .container 
-      %nav.navbar.navbar-default.scheme-primary-dark{:role=>"navigation"}
-        %a.navbar-brand Project Sabertooth
-        .collapse.navbar-collapse.navbar-ex1-collapse.navbar-right
-          %ul.nav.navbar-nav
-            %li{:class=>('active' if @active_tab == 'Home')}
-              %a{:href=>home_index_path} Home
-            %li{:class=>('active' if @active_tab == 'AboutSaberTooth')}
-              %a{:href=>about_index_path} About
-            %li{:class=>('active' if @active_tab == 'Log In')}
-              %a{:href=>login_index_path} Login
-      #main
+    = render :partial => "shared/navbar"
+    #main
+      .navbar-shift
         = yield

@@ -1,28 +1,36 @@
-.col-md-6.col-md-offset-3
-  .panel.panel-primary
-    .panel-heading.panel-title
-      %h4 New Account
-    .panel-body
-      Create a new account!
-      %form.form-signin
+- content_for(:text) do
+  %form.form-signin
+    .panel
+      .col-md-6
         %br
         .form-group
-          %input.form-control{:type=>"text", :placeholder=>"Display Name"}
+        %input.form-control{:type=>"text", :placeholder=>"Display Name"}
         .form-group
-          %input.form-control{:type=>"text", :placeholder=>"Email Address"}
+        %input.form-control{:type=>"text", :placeholder=>"Email Address"}
         .form-group
-          %input.form-control{:type=>"password", :placeholder=>"Password"}
+        %input.form-control{:type=>"password", :placeholder=>"Password"}
         .form-group
-          %input.form-control{:type=>"password", :placeholder=>"Confirm Password"}
-        %br
-        %h4 What type of account would you like?
+        %input.form-control{:type=>"password", :placeholder=>"Confirm Password"}
+
+        .btn-group#pricing
+          %button.btn.btn-default{:type=>"button"} Free
+          %button.btn.btn-default{:type=>"button"} Hobbyist
+          %button.btn.btn-default{:type=>"button"} Professional
+          %button.btn.btn-default{:type=>"button"} Enterprise
+
+        .input-group
+          %span.input-group-addon
+            %input{:type=>"checkbox"}
+          %span.input-group-addon I accept Project Sabertooth's Terms and Conditions.
+
+      .col-md-6
         %table.table.table-striped.table-bordered
           %tr
             %th{:width=>"25%"} Account type
             %th{:width=>"75%"} Benefits
             %th{:width=>"25%"} Cost (Monthly)
           %tr
-            %td Free account
+            %td Free
             %td
               Put details here!
             %td $0.00
@@ -42,17 +50,8 @@
               Put details here!
             %td $19.99
 
-        What type of account would you like to create?
-        .btn-group#pricing
-          %button.btn.btn-default{:type=>"button"} Free account
-          %button.btn.btn-default{:type=>"button"} Hobbyist
-          %button.btn.btn-default{:type=>"button"} Professional
-          %button.btn.btn-default{:type=>"button"} Enterprise
+  .col-md-offset-2
+    %button.btn.btn-default{:type=>"submit"} Create Account
 
-      %br
-      .input-group
-        %span.input-group-addon
-          %input{:type=>"checkbox"}
-        %span.input-group-addon I accept the Project Sabertooth Terms and Conditions.
-      %br
-      %button.btn.btn-default{:type=>"submit"} Create Account
+
+= render :partial => "shared/content", :locals => { :title => "Create A New Account" }

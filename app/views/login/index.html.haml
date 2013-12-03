@@ -1,16 +1,16 @@
-.col-md-6.col-md-offset-3
-  .panel.panel-primary
-    .panel-heading.panel-title
-      %h4 Login
-    .panel-body
-      Login to access your account!
-      %br
-      New?
-      %a{:href=>new_login_path} Create an account!
-      %form.form-signin
+- content_for(:rest)
+
+- content_for(:text) do
+    Login to access your account!
+    %br
+    New?
+    %a{:href=>new_login_path} Create an account!
+    %form.form-signin
         %br
         .form-group
-          %input.form-control{:type=>"text", :placeholder=>"Username"}
+            %input.form-control{:type=>"text", :placeholder=>"Email"}
         .form-group
-          %input.form-control{:type=>"password", :placeholder=>"Password"}
+            %input.form-control{:type=>"password", :placeholder=>"Password"}
         %button.btn.btn-default{:type=>"submit"} Login
+
+= render :partial => "shared/content", :locals => { :title => "Login" }
