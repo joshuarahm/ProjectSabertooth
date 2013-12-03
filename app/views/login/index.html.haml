@@ -4,9 +4,13 @@
       %h4 Login
     .panel-body
       Login to access your account!
+      %br
+      New?
+      %a{:href=>new_login_path} Create an account!
       %form.form-signin
         %br
         .form-group
           %input.form-control{:type=>"text", :placeholder=>"Username"}
+        .form-group
           %input.form-control{:type=>"password", :placeholder=>"Password"}
         %button.btn.btn-default{:type=>"submit"} Login
