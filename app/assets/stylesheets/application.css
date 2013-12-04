@@ -15,7 +15,7 @@
 body {
     background: white url("background.jpg") no-repeat scroll center 0 ;
     background-attachment: fixed ;
-    background-size: cover; ! important
+    background-size: cover;
     height: 100%;
 }
 
