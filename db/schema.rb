@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204044408) do
+ActiveRecord::Schema.define(version: 20131205014342) do
 
   create_table "user_sessions", force: true do |t|
     t.datetime "created_at"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20131204044408) do
     t.integer  "plan"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.string   "session_token"
   end
 
 end

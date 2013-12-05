@@ -1,0 +1,8 @@
+- @active_tab = "LogIn"
+- content_for(:rest) do
+    %a.btn.btn-primary.btn{:role=>"button",:href=>home_index_path} Go To Your Home
+
+- content_for(:text) do
+    %p Your account has been created!
+
+= render :partial => "shared/content", :locals => { :title => "Thanks #{params['user']['displayName']}!" }
