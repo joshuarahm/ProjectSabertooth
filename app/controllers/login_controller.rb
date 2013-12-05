@@ -3,4 +3,8 @@ class LoginController < ApplicationController
 	def index
 
 	end
+
+	def create
+		print("login#new invoked")
+	end
 end
