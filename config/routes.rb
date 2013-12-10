@@ -13,7 +13,11 @@ ProjectSabertooth::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :login
+  resources :login do
+	  member do
+		  post 'login'
+	  end
+  end
   resources :home
   resources :about
 
