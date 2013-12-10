@@ -6,8 +6,6 @@ class LoginController < ApplicationController
 
 	def create
         user = params.require(:user).permit!
-        user.require(:emailAddress)
-        user.permit(:displayName, :password, :password_confirmation)
         print(user[:displayName])
         pwHash = Digest::SHA2.new(256) 
         pwHash << user[:password]
@@ -19,6 +17,7 @@ class LoginController < ApplicationController
             pwHash << aChar.chr
             user[:password_salt] <<  aChar
         end
+        user[:password_salt] = Base64.encode64(user[:password_salt])
         user[:password_hash] = pwHash.to_s
 
         print(user)
