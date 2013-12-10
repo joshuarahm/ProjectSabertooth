@@ -53,7 +53,7 @@ class LoginController < ApplicationController
     def newNonce(len)
         nonce = ""
         for i in 0..len
-            salt << rand(256)
+            nonce << rand(256)
         end
         return nonce
     end
