@@ -3,6 +3,9 @@
     %a.btn.btn-primary.btn{:role=>"button",:href=>home_index_path} Go To Your Home
 
 - content_for(:text) do
-    %p Your account has been created!
+    - if @create_successful
+        %p Your account has been created!
+    - else
+        %p Failed to create account!
 
-= render :partial => "shared/content", :locals => { :title => "Thanks #{params['user']['display_name']}!" }
+= render :partial => "shared/content", :locals => { :title => @title }
