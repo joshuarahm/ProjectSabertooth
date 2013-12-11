@@ -8,12 +8,12 @@ class LoginController < ApplicationController
     def login
         login_params = params.require(:user).permit!
 
-        email, password = login_params[:email_address], login_params[:password]
+        email, password = login_params[:email_address], login_params[ :password]
         
         user = get_user(email, password)
         if user != nil
             @status = "Valid"
-            token = new_nonce(32)
+            token = newNonce(32)
             session[:email_address] = user[:email_address]
             session[:session_token] = hash_password(token, "")
             user[:session_token] = token
@@ -44,8 +44,8 @@ class LoginController < ApplicationController
         user.delete(:password)
         user.delete(:password_confirmation)
 
-        new_user = User.new(user)
-        new_user.save()
+        newUser = User.new(user)
+        newUser.save()
 	end
 
 end
