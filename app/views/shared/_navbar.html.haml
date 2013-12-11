@@ -1,11 +1,15 @@
 .container.navbar-fixed-top
-  %nav.navbar.navbar-default.scheme-primary-dark{:role=>"navigation"}
-    %a.navbar-brand Project Sabertooth
-    .collapse.navbar-collapse.navbar-ex1-collapse.navbar-right
-      %ul.nav.navbar-nav
-        %li{:class=>('active' if @active_tab == 'Home')}
-          %a{:href=>home_index_path} Home
-        %li{:class=>('active' if @active_tab == 'AboutSaberTooth')}
-          %a{:href=>about_index_path} About
-        %li{:class=>('active' if @active_tab == 'LogIn')}
-          %a{:href=>login_index_path} Login
+    %nav.navbar.navbar-default.scheme-primary-dark{:role=>"navigation"}
+        %a.navbar-brand Project Sabertooth
+        .collapse.navbar-collapse.navbar-ex1-collapse.navbar-right
+            %ul.nav.navbar-nav
+                %li{:class=>('active' if @active_tab == 'Home')}
+                    %a{:href=>home_index_path} Home
+                %li{:class=>('active' if @active_tab == 'AboutSaberTooth')}
+                    %a{:href=>about_index_path} About
+                - if @user_id == nil
+                    %li{:class=>('active' if @active_tab == 'LogIn')}
+                        %a{:href=>login_index_path} Login
+                - if @user_id != nil
+                    .navbar-text
+                        Welcome #{@user_name} (<a class="navbar-link" href=#{user_logout_url}>logout</a>)

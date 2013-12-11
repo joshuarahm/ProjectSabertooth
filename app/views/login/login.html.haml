@@ -1,3 +1,8 @@
-=@status
-%br
-=@user
+- @active_tab = "LogIn"
+- content_for(:rest) do
+    %a.btn.btn-primary.btn{:role=>"button",:href=>home_index_path} Go To Your Home
+
+- content_for(:text) do
+    You've logged in successfully!
+
+= render :partial => "shared/content", :locals => { :title => "Logged In!" }

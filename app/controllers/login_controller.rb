@@ -18,19 +18,19 @@ class LoginController < ApplicationController
             session[:session_token] = hash_password(token, "")
             user[:session_token] = token
 			user.save()
+			@user_id = user[:id]
+			@user_name = user[:display_name]
         else 
             @status = "Notvalid"
         end
-
-		@user = get_session(session[:email_address], session[:session_token])
     end
 
     def logout
-        user = get_user(email, password)
-        if user != nil
+        if session.has_key?(:email_address)
             session.delete(:email_address)
             session.delete(:session_token)
         end
+		redirect_to root_url
     end
 
 	def create
