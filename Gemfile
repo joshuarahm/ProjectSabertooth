@@ -55,7 +55,7 @@ end
 
 group :development do
     gem 'capybara'
-	gem 'rspec'
+	gem 'rspec-rails'
 end
 
 group :production do
