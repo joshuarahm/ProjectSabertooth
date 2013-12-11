@@ -7,7 +7,7 @@ module LoginHelper
 		login_user = User.where(:email_address=>email_address).first
 		print Base64.encode64(login_user[:session_token])
 		print Base64.encode64(session_token)
-		if login_user[:email_address] == email_address and hash_password(login_user[:session_token]) == session_token
+		if login_user[:email_address] == email_address and hash_password(login_user[:session_token], "") == session_token
 			print "Accepted token for user: #{login_user[:id]}"
 			return login_user[:id]
 		end
@@ -15,7 +15,7 @@ module LoginHelper
 
     def new_salt()
         salt = ""
-        salt << newNonce(8)
+        salt << new_nonce(8)
         return Base64.encode64(salt)
     end
 

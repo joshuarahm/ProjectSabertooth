@@ -13,7 +13,7 @@ class LoginController < ApplicationController
         user = get_user(email, password)
         if user != nil
             @status = "Valid"
-            token = newNonce(32)
+            token = new_nonce(32)
             session[:email_address] = user[:email_address]
             session[:session_token] = hash_password(token, "")
             user[:session_token] = token
