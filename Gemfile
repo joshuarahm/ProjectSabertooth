@@ -55,6 +55,7 @@ end
 
 group :development do
     gem 'capybara'
+	gem 'rpsec'
 end
 
 group :production do
