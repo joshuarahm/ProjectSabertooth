@@ -6,26 +6,29 @@ class LoginController < ApplicationController
 	end
 
     def login
-        loginParams = params.require(:user).permit!
+        login_params = params.require(:user).permit!
 
-        email, password = loginParams[:emailAddress], loginParams[ :password]
+        email, password = login_params[:email_address], login_params[:password]
         
-        user = getUser(email, password)
+        user = get_user(email, password)
         if user != nil
             @status = "Valid"
-            token = newNonce(32)
-            session[:emailAddress] = user[:emailAddress]
-            session[:session_token] = token
+            token = new_nonce(32)
+            session[:email_address] = user[:email_address]
+            session[:session_token] = hash_password(token, "")
             user[:session_token] = token
+			user.save()
         else 
             @status = "Notvalid"
         end
+
+		@user = get_session(session[:email_address], session[:session_token])
     end
 
     def logout
-        user = getUser(email, password)
+        user = get_user(email, password)
         if user != nil
-            session.delete(:emailAddress)
+            session.delete(:email_address)
             session.delete(:session_token)
         end
     end
@@ -34,15 +37,15 @@ class LoginController < ApplicationController
         #Permit access to the entire :user hash
         user = params.require(:user).permit!
 
-        user[:password_salt] = newSalt()
-        user[:password_hash] = hashPassword(user[:password], user[:password_salt])
+        user[:password_salt] = new_salt()
+        user[:password_hash] = hash_password(user[:password], user[:password_salt])
 
         #Get rid of plaintext passwords
         user.delete(:password)
         user.delete(:password_confirmation)
 
-        newUser = User.new(user)
-        newUser.save()
+        new_user = User.new(user)
+        new_user.save()
 	end
 
 end
