@@ -16,7 +16,6 @@ class LoginController < ApplicationController
             token = new_nonce(32)
             session[:email_address] = user[:email_address]
             session[:session_token] = Base64.encode64(token)
-            print session[:session_token]
             user[:session_token] = hash_password(token, "")
 			user.save()
 			@user_id = user[:id]
