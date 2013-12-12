@@ -21,6 +21,7 @@ ProjectSabertooth::Application.routes.draw do
   end
   resources :home
   resources :about
+  resources :document
 
   # Example resource route with options:
   #   resources :products do
