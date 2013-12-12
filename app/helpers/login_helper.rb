@@ -5,11 +5,7 @@ module LoginHelper
 		end
 		login_user = User.where(:email_address=>email_address).first
         if login_user != nil
-            print session_token
-            print Base64.decode64(session_token)
-            print hash_password(Base64.decode64(session_token), "")
             if login_user[:email_address] == email_address and login_user[:session_token] == hash_password(Base64.decode64(session_token), "")
-                print "Accepted token for user: #{login_user[:id]}"
                 return login_user[:id]
             end
         end
