@@ -1,8 +1,8 @@
 .col-md-10.col-md-offset-1
     .panel
         .panel-body
-            .row
-                .col-md-3{:style=>"border-right: 1px solid #777"}
+            .row.rowfix
+                .col-md-3.col-extend{:style=>"border-right: 1px solid #777"}
                     = yield(:left)
-                .col-md-9
+                .col-md-9.col-extend
                     = yield(:right)
