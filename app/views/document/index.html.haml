@@ -1,7 +1,14 @@
 - @active_tab = "LogIn"
-- content_for(:rest)
 
-- content_for(:text) do
-    Document list goes here :C
+- content_for(:left) do
+    - @documents.each do |doc|
+        %a{:href=>document_path(doc)}
+            = doc.name
+        %br
 
-= render :partial => "shared/content", :locals => { :title => "Documents" }
+- content_for(:right) do
+    %textarea.form-control{:rows=>20}
+        =@current_doc[:content]
+        
+
+= render :partial => "shared/large_format"
