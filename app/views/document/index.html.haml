@@ -1,13 +1,24 @@
 - @active_tab = "LogIn"
+- @onload = "docLoad()"
 
 - content_for(:left) do
-    - @documents.each do |doc|
-        %a{:href=>document_path(doc)}
-            = doc.name
-        %br
+    %ul.nav.nav-pills.nav-stacked
+        - @documents.each do |doc|
+            - if @current_doc[:id] == doc[:id]
+                %li.active
+                    %a{:href=>document_path(doc)}
+                        = doc.name
+                        %span.badge.pull-right#doc_badge
+                            Saved
+            -else
+                %li
+                    %a{:href=>document_path(doc)}
+                        = doc.name
 
 - content_for(:right) do
-    %textarea.form-control{:rows=>20}
+    %div#document_id{:style=>"display: none;"}
+        =@current_doc[:id]
+    %textarea.form-control#main_document{:rows=>20}
         =@current_doc[:content]
         
 

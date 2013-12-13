@@ -11,4 +11,14 @@ class DocumentController < ApplicationController
 		session[:current_doc] = params[:id]
 		redirect_to document_index_path
 	end
+
+	def edit
+		if @user_id != nil
+			params.permit(:id, :contents)
+			doc = Document.find(params[:id])
+			doc[:content] = params[:contents]
+			doc.save()
+			render :json => {:status=>"Success" + params[:id].to_s + params[:contents].to_s}
+		end
+	end
 end
