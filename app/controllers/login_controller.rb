@@ -22,6 +22,8 @@ class LoginController < ApplicationController
 			@user_name = user[:display_name]
         else 
             @status = "Notvalid"
+            flash[:error] = "Invalid Email and/or Password"
+            redirect_to login_index_path
         end
     end
 

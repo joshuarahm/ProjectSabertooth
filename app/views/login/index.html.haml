@@ -2,11 +2,13 @@
 - content_for(:rest)
 
 - content_for(:text) do
+    - if flash[:error] != nil
+        .alert.alert-danger
+            =flash[:error]
     Login to access your account!
     %br
     New?
     %a{:href=>new_login_path} Create an account!
-    //%form.form-signin
     = form_tag login_login_path @user do
         %br
         .form-group
