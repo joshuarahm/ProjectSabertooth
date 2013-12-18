@@ -11,5 +11,8 @@
                     %li{:class=>('active' if @active_tab == 'LogIn')}
                         %a{:href=>login_index_path} Login
                 - if @user_id != nil
-                    .navbar-text
-                        Welcome #{@user_name} (<a class="navbar-link" href=#{user_logout_url}>logout</a>)
+                    %li{:class=>('active' if @active_tab == "DocumentIndex")}
+                        %a{:href=>document_index_path} My Documents
+                    %li
+                        .navbar-text
+                            Welcome #{@user_name} (<a class="navbar-link" href=#{user_logout_url}>logout</a>)

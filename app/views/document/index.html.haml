@@ -1,10 +1,10 @@
-- @active_tab = "LogIn"
+- @active_tab = "DocumentIndex"
 - @onload = "docLoad()"
 
 - content_for(:left) do
     %ul.nav.nav-pills.nav-stacked
         - @documents.each do |doc|
-            - if @current_doc[:id] == doc[:id]
+            - if @current_doc != nil and @current_doc[:id] == doc[:id]
                 %li.active
                     %a{:href=>document_path(doc)}
                         = doc.name
@@ -16,10 +16,11 @@
                         = doc.name
 
 - content_for(:right) do
-    %div#document_id{:style=>"display: none;"}
-        =@current_doc[:id]
-    %textarea.form-control#main_document{:rows=>20}
-        =@current_doc[:content]
+    -if @current_doc != nil
+        %div#document_id{:style=>"display: none;"}
+            =@current_doc[:id]
+        %textarea.form-control#main_document{:rows=>20}
+            =@current_doc[:content]
         
 
 = render :partial => "shared/large_format"
