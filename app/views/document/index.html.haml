@@ -1,26 +1,28 @@
 - @active_tab = "DocumentIndex"
 - @onload = "docLoad()"
 
-- content_for(:left) do
-    %ul.nav.nav-pills.nav-stacked
-        - @documents.each do |doc|
-            - if @current_doc != nil and @current_doc[:id] == doc[:id]
-                %li.active
-                    %a{:href=>document_path(doc)}
-                        = doc.name
-                        %span.badge.pull-right#doc_badge
-                            Saved
-            -else
-                %li
-                    %a{:href=>document_path(doc)}
-                        = doc.name
+- if @current_user != nil
+    - content_for(:left) do
+        %ul.nav.nav-pills.nav-stacked
+            - @documents.each do |doc|
+                - if @current_doc != nil and @current_doc[:id] == doc[:id]
+                    %li.active
+                        %a{:href=>document_path(doc)}
+                            = doc.name
+                            %span.badge.pull-right#doc_badge
+                                Saved
+                -else
+                    %li
+                        %a{:href=>document_path(doc)}
+                            = doc.name
 
-- content_for(:right) do
-    -if @current_doc != nil
-        %div#document_id{:style=>"display: none;"}
-            =@current_doc[:id]
-        %textarea.form-control#main_document{:rows=>20}
-            =@current_doc[:content]
-        
-
-= render :partial => "shared/large_format"
+    - content_for(:right) do
+        -if @current_doc != nil
+            %div#document_id{:style=>"display: none;"}
+                =@current_doc[:id]
+            %textarea.form-control#main_document{:rows=>20}
+                =@current_doc[:content]
+            
+    = render :partial => "shared/large_format"
+- else
+    = render :partial => "shared/need_login"
