@@ -1,7 +1,7 @@
 - @active_tab = "DocumentIndex"
 - @onload = "docLoad()"
 
-- if @current_user != nil
+- if @user_name != nil
     - content_for(:left) do
         %ul.nav.nav-pills.nav-stacked
             - @documents.each do |doc|
