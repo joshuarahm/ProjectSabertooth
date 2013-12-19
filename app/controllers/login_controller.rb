@@ -36,6 +36,20 @@ class LoginController < ApplicationController
 	def create
         #Permit access to the entire :user hash
         user = params.require(:user).permit!
+        
+        if user[:email_address] == ""
+            flash[:error] = "Email address required."
+            redirect_to new_login_path
+        elsif user[:display_name] == ""
+            flash[:error] = "Display name required."
+            redirect_to new_login_path
+        elsif user[:password] != user[:password_confirmation]
+            flash[:error] = "Passwords do not match."
+            redirect_to new_login_path
+        elsif user[:password].length < 4
+            flash[:error] = "Password should be atleast 4 characters long."
+            redirect_to new_login_path
+        end
 
         user[:password_salt] = new_salt()
         user[:password_hash] = hash_password(user[:password], user[:password_salt])

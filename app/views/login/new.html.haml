@@ -2,6 +2,9 @@
     = form_tag login_index_path do
         .panel
             .col-md-6
+                - if flash[:error] != nil
+                    .alert.alert-danger
+                        =flash[:error]
                 %br
                 .form-group
                     %input.form-control{:type=>"text", :placeholder=>"Display Name", :name=>"user[display_name]"}
