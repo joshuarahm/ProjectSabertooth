@@ -59,6 +59,7 @@ class LoginController < ApplicationController
         user.delete(:password_confirmation)
 
         newUser = User.new(user)
+        @user = newUser
         if newUser.save()
             @create_successful = "success"
         end
