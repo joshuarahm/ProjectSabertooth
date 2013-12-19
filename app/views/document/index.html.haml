@@ -7,6 +7,9 @@
             %a.btn.btn-default{:href=>new_document_path} New Doc
             - if @current_doc != nil
                 = link_to 'Destroy', document_path(@current_doc), :confirm => 'Are you sure?', :method => :delete, :class=>"btn btn-default"
+        .btn-group.pull-right
+            %a.btn.btn-success
+                Options
         %br
         %ul.nav.nav-pills.nav-stacked
             - @documents.each do |doc|
