@@ -1,0 +1,19 @@
+- content_for(:text) do
+    %h3 Permissions
+    - @hashes.each do | elem |
+        %a User #{elem[:user]}
+        %a Perms #{elem[:perms]}
+    %h3 New
+    = form_tag doc_options_save_path do
+        .input-group
+        %span
+            %input{:type=>"text",:placeholder=>"User",:name=>"perms[user_id]"}
+            %input{:type=>"checkbox",:name=>"perms[read]"}
+                Read
+            %input{:type=>"checkbox",:name=>"perms[write]"}
+                Write
+            %input{:type=>"checkbox",:name=>"perms[share]"}
+                Share
+        %button.btn.btn-default{:type=>"submit"} Save
+
+= render :partial => "shared/content", :locals => { :title => "Options" }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131206235626) do
+ActiveRecord::Schema.define(version: 20131212201130) do
 
   create_table "document_permissions", force: true do |t|
     t.datetime "created_at"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20131206235626) do
     t.datetime "updated_at"
     t.integer  "owner_id"
     t.string   "name"
+    t.binary   "content",    limit: 10485760
   end
 
   create_table "user_sessions", force: true do |t|
@@ -34,8 +35,8 @@ ActiveRecord::Schema.define(version: 20131206235626) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "displayName"
-    t.string   "emailAddress"
+    t.string   "display_name"
+    t.string   "email_address"
     t.integer  "plan"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -43,5 +44,7 @@ ActiveRecord::Schema.define(version: 20131206235626) do
     t.string   "password_salt"
     t.string   "session_token"
   end
+
+  add_index "users", ["email_address"], name: "email_addr_indx", unique: true
 
 end

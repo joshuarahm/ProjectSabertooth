@@ -1,0 +1,7 @@
+- content_for(:text) do
+    - if not @failed
+        %h3 Options Saved!
+    - else
+        %h3 Options failed to save!
+
+= render :partial => "shared/content", :locals => { :title => "" }

@@ -16,6 +16,8 @@ ProjectSabertooth::Application.routes.draw do
   match "login/login" => "login#login", :as=>"user_login", :via=>[:post]
   match "login/logout" => 'login#logout', :as=>'user_logout', :via=>[:get]
   match "document/:id/edit" => "document#edit", :as=>"ajax_edit_doc", :via=>[:post]
+  match "document/:id/options" => "document#options", :as=>"doc_options", :via=>[:get]
+  match "document/:id/options_save" => "document#options_save", :as=>"doc_options_save", :via=>[:post]
   resources :login
   resources :home
   resources :about

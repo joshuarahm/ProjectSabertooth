@@ -27,7 +27,7 @@
                 %input.form-control#document_title{:type=>"text", :value=>@current_doc[:name]}
                 %span.input-group-addon#doc_badge
                     Saved
-                %a.btn-primary.input-group-addon.btn{:href=>home_index_path} Options
+                %a.btn-primary.input-group-addon.btn{:href=>doc_options_path(@current_doc[:id])} Options
             %br
             %textarea.form-control#main_document{:rows=>20}
                 =@current_doc[:content]
