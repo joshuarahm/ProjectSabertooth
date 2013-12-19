@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 		if session.has_key?(:email_address) and session.has_key?(:session_token)
 			user_id = get_session(session[:email_address], session[:session_token])
             if user_id != nil
-                @user = User.find(@user_id)
+                @user = User.find(user_id)
             else
                 return
             end
