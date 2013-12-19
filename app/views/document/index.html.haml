@@ -12,7 +12,7 @@
             - @documents.each do |doc|
                 - if @current_doc != nil and @current_doc[:id] == doc[:id]
                     %li.active
-                        %a{:href=>document_path(doc)}
+                        %a#menu_entry{:href=>document_path(doc)}
                             = doc.name
                             %span.badge.pull-right#doc_badge
                                 Saved

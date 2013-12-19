@@ -10,8 +10,10 @@ function writeDocChange() {
     id = $("#document_id").html().toString().trim()
     contents = $("#main_document")[0].value
     title = $("#document_title")[0].value
+    //$("#menu_entry").text("BLAHBLAH")
+    //console.log($("#menu_entry").text())
     
-    $("#doc_badge").text("Saved")
+    //$("#doc_badge").text("Saved")
     console.log("Found doc_id = '" + id + "'")
     editUrl = editUrl.replace("%ID", id)
     $.post(editUrl, {id: id, contents: contents.toString(), title: title.toString()})
