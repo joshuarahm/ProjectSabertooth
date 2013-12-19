@@ -59,9 +59,18 @@ class LoginController < ApplicationController
         user.delete(:password_confirmation)
 
         newUser = User.new(user)
-        @user = newUser
+        
+
         if newUser.save()
             @create_successful = "success"
+            token = new_nonce(32)
+            session[:email_address] =newUser[:email_address]
+            session[:session_token] = Base64.encode64(token)
+            newUser[:session_token] = hash_password(token, "")
+            newUser.save()
+            Document.new(:owner_id=>newUser[:id], :name=>"Demo Ruby Code", :content=>"# Variables and expressions.\na = 10\nb = 3 * a + 2\nprintf(\"%d %d\n\", a, b);\n\n# Type is dynamic.\nb = \"A string\"\nc = 'Another String'\nprint b + \" and \" + c + \" + \"\\n\"").save()
+            Document.new(:owner_id=>newUser[:id], :name=>"Demo JS Code", :content=>"var firstname;\nfirstname=\"Hege\";\ndocument.write(firstname);\ndocument.write(\"<br>\");\nfirstname=\"Tove\";\ndocument.write(firstname);").save()
+            @user = newUser
         end
 	end
 end
