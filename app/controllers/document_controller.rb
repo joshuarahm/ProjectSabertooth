@@ -23,5 +23,11 @@ class DocumentController < ApplicationController
 	end
 
     def new
+        if loggedIn?
+            new_doc = Document.new(:owner_id=>@user[:id], :name=>"Untitled Document", :content=>"")
+            new_doc.save
+            session[:current_doc] = new_doc[:id]
+            redirect_to document_index_path
+        end
     end
 end
