@@ -1,0 +1,10 @@
+Project went well
+
+The features we currently have implemented is the ability to login, create and delete documents
+
+The documents are saved in real time so the user does not have to worry about losing data
+
+We were not able to fully implement sharing but much of the model and view is implemented so
+adding it should not be too hard.
+
+Every new user has 2 demo files
