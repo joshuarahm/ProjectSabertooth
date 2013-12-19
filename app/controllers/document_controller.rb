@@ -7,10 +7,49 @@ class DocumentController < ApplicationController
 			end
 		end
 	end
+
 	def show
 		session[:current_doc] = params[:id]
 		redirect_to document_index_path
 	end
+
+    def options_save
+        params.permit(:id)
+        params.permit(:perms)
+        params.require(:perms).permit(:user_id,:read,:write,:share)
+
+        perms = params[:perms] 
+        users = User.where( :email_address => perms[:user_id] )
+        
+        if users.length != 1
+            @failed = true
+        else
+            dperm = DocumentPermissions.new
+            dperm.created_at = 0
+            dperm.updated_at = 0
+            dperm.document_id = params[:id]
+            dperm.user_id = users[0].id
+            dperm.perms = (perms[:read] << 2) + (perms[:write] << 1) + perms[:share]
+
+            puts("Inserting: " + dperm.attributes.to_s)
+            @failed = !(dperm.save())
+        end
+    end
+
+    def options
+        params.permit(:id) 
+        if params[:id] != nil
+            id = params[:id] ;
+            doc_perms_list = DocumentPermissions.where( :document_id => id )
+            @hashes = [] ;
+
+            doc_perms_list.each do |perm|
+                user = Users.find(perm.user_id)
+                hash = { :user=>user.name, :perms=>perm.perms }
+                hashes << hash
+            end
+        end
+    end
 
 	def edit
 		if loggedIn?
