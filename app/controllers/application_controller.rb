@@ -8,14 +8,15 @@ class ApplicationController < ActionController::Base
 
 	def set_user_state
 		if session.has_key?(:email_address) and session.has_key?(:session_token)
-			@user_id = get_session(session[:email_address], session[:session_token])
-            if @user_id != nil
-                rec = User.find(@user_id)
-                @user_id = rec[:id]
-                @user_name = rec[:display_name]
+			user_id = get_session(session[:email_address], session[:session_token])
+            if user_id != nil
+                @user = User.find(@user_id)
             else
                 return
             end
 		end
 	end
+    def loggedIn?
+        return @user != nil
+    end
 end

@@ -7,12 +7,12 @@
                     %a{:href=>home_index_path} Home
                 %li{:class=>('active' if @active_tab == 'AboutSaberTooth')}
                     %a{:href=>about_index_path} About
-                - if @user_id == nil
-                    %li{:class=>('active' if @active_tab == 'LogIn')}
-                        %a{:href=>login_index_path} Login
-                - if @user_id != nil
+                - if loggedIn?
                     %li{:class=>('active' if @active_tab == "DocumentIndex")}
                         %a{:href=>document_index_path} My Documents
                     %li
                         .navbar-text
-                            Welcome #{@user_name} (<a class="navbar-link" href=#{user_logout_url}>logout</a>)
+                            Welcome #{@user[:display_name]} (<a class="navbar-link" href=#{user_logout_url}>logout</a>)
+                - else
+                    %li{:class=>('active' if @active_tab == 'LogIn')}
+                        %a{:href=>login_index_path} Login

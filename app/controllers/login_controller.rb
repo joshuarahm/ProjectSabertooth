@@ -18,8 +18,7 @@ class LoginController < ApplicationController
             session[:session_token] = Base64.encode64(token)
             user[:session_token] = hash_password(token, "")
 			user.save()
-			@user_id = user[:id]
-			@user_name = user[:display_name]
+            @user = user
         else 
             @status = "Notvalid"
             flash[:error] = "Invalid Email and/or Password"
