@@ -14,8 +14,6 @@
                     %li.active
                         %a#menu_entry{:href=>document_path(doc)}
                             = doc.name
-                            %span.badge.pull-right#doc_badge
-                                Saved
                 -else
                     %li
                         %a{:href=>document_path(doc)}
@@ -25,7 +23,10 @@
         -if @current_doc != nil
             %div#document_id{:style=>"display: none;"}
                 =@current_doc[:id]
-            %input.form-control#document_title{:type=>"text", :value=>@current_doc[:name]}
+            .input-group
+                %input.form-control#document_title{:type=>"text", :value=>@current_doc[:name]}
+                %span.input-group-addon#doc_badge
+                    Saved
             %br
             %textarea.form-control#main_document{:rows=>20}
                 =@current_doc[:content]
