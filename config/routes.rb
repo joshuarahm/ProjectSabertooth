@@ -13,13 +13,10 @@ ProjectSabertooth::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  match "login/login" => "login#login", :as=>"user_login", :via=>[:post]
   match "login/logout" => 'login#logout', :as=>'user_logout', :via=>[:get]
   match "document/:id/edit" => "document#edit", :as=>"ajax_edit_doc", :via=>[:post]
-  resources :login do
-	  member do
-		  post 'login'
-	  end
-  end
+  resources :login
   resources :home
   resources :about
   resources :document

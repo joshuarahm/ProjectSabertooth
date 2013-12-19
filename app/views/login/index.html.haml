@@ -9,7 +9,7 @@
     %br
     New?
     %a{:href=>new_login_path} Create an account!
-    = form_tag login_login_path @user do
+    = form_tag user_login_path do
         %br
         .form-group
             %input.form-control{:type=>"text", :placeholder=>"Email", :name=>"user[email_address]"}
