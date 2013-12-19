@@ -49,5 +49,4 @@ class LoginController < ApplicationController
             @create_successful = "success"
         end
 	end
-
 end

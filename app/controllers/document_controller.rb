@@ -30,4 +30,15 @@ class DocumentController < ApplicationController
             redirect_to document_index_path
         end
     end
+    def destroy
+        if loggedIn?
+            params.permit(:id)
+            doc = Document.find(params[:id])
+            if doc != nil
+                session.delete(:current_doc)
+                doc.destroy
+            end
+            redirect_to document_index_path
+        end
+    end
 end
