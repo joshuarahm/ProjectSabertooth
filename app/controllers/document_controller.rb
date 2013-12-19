@@ -21,8 +21,9 @@ class DocumentController < ApplicationController
                 doc[:name] = params[:title]
                 doc.save()
                 render :json => {:status=>"Success" + params[:id].to_s + params[:contents].to_s}
+            else
+                render :json => {:status=>"Failed" + params[:id].to_s + params[:contents].to_s}
             end
-			render :json => {:status=>"Failed" + params[:id].to_s + params[:contents].to_s}
 		end
 	end
 
