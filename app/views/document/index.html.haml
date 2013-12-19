@@ -7,9 +7,6 @@
             %a.btn.btn-default{:href=>new_document_path} New Doc
             - if @current_doc != nil
                 = link_to 'Destroy', document_path(@current_doc), :confirm => 'Are you sure?', :method => :delete, :class=>"btn btn-default"
-        .btn-group.pull-right
-            %a.btn.btn-success
-                Options
         %br
         %ul.nav.nav-pills.nav-stacked
             - @documents.each do |doc|
@@ -30,6 +27,7 @@
                 %input.form-control#document_title{:type=>"text", :value=>@current_doc[:name]}
                 %span.input-group-addon#doc_badge
                     Saved
+                %a.btn-primary.input-group-addon.btn{:href=>home_index_path} Options
             %br
             %textarea.form-control#main_document{:rows=>20}
                 =@current_doc[:content]
