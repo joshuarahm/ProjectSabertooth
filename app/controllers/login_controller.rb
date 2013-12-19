@@ -2,7 +2,6 @@ class LoginController < ApplicationController
 	include LoginHelper
 	#The default login page
 	def index
-        @user = User
 	end
 
     def login
