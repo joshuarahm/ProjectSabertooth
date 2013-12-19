@@ -5,7 +5,8 @@
     - content_for(:left) do
         .btn-group.btn-group-justified.bottom
             %a.btn.btn-default{:href=>new_document_path} New Doc
-            = link_to 'Destroy', document_path(@current_doc), :confirm => 'Are you sure?', :method => :delete, :class=>"btn btn-default"
+            - if @current_doc != nil
+                = link_to 'Destroy', document_path(@current_doc), :confirm => 'Are you sure?', :method => :delete, :class=>"btn btn-default"
         %br
         %ul.nav.nav-pills.nav-stacked
             - @documents.each do |doc|
@@ -24,6 +25,8 @@
         -if @current_doc != nil
             %div#document_id{:style=>"display: none;"}
                 =@current_doc[:id]
+            %input.form-control#document_title{:type=>"text", :value=>@current_doc[:name]}
+            %br
             %textarea.form-control#main_document{:rows=>20}
                 =@current_doc[:content]
             

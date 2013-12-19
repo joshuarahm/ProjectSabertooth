@@ -9,11 +9,12 @@ function writeDocChange() {
     editUrl = "/document/%ID/edit"
     id = $("#document_id").html().toString().trim()
     contents = $("#main_document")[0].value
+    title = $("#document_title")[0].value
     
     $("#doc_badge").text("Saved")
     console.log("Found doc_id = '" + id + "'")
     editUrl = editUrl.replace("%ID", id)
-    $.post(editUrl, {id: id, contents: contents.toString()})
+    $.post(editUrl, {id: id, contents: contents.toString(), title: title.toString()})
 }
     
 function textUpdateListener() {
@@ -37,5 +38,7 @@ function docLoad() {
     //but does NOT trigger onLoad again.
     //It does not clear setInterval though, so this workaround still works.
     inp = $("#main_document")[0]
+    inp.addEventListener("input",textUpdateListener, false)
+    inp = $("#document_title")[0]
     inp.addEventListener("input",textUpdateListener, false)
 }

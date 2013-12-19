@@ -14,11 +14,15 @@ class DocumentController < ApplicationController
 
 	def edit
 		if loggedIn?
-			params.permit(:id, :contents)
-			doc = Document.find(params[:id])
-			doc[:content] = params[:contents]
-			doc.save()
-			render :json => {:status=>"Success" + params[:id].to_s + params[:contents].to_s}
+			params.permit(:id, :contents, :title)
+            if params[:id] != nil and params[:contents] != nil and params[:title] != nil
+                doc = Document.find(params[:id])
+                doc[:content] = params[:contents]
+                doc[:name] = params[:title]
+                doc.save()
+                render :json => {:status=>"Success" + params[:id].to_s + params[:contents].to_s}
+            end
+			render :json => {:status=>"Failed" + params[:id].to_s + params[:contents].to_s}
 		end
 	end
 
