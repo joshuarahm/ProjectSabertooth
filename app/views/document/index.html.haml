@@ -27,9 +27,15 @@
                 %input.form-control#document_title{:type=>"text", :value=>@current_doc[:name]}
                 %span.input-group-addon#doc_badge
                     Saved
+            %select.form-control{:onchange=>"setHighlighting(this)"}
+                %option Syntax Highlighting...
+                %option{:value=>"plaintext"} Plaintext
+                %option{:value=>"text/x-ruby"} Ruby
+                %option{:value=>"javascript"} Javascript
             %br
             %textarea.form-control#main_document{:rows=>20}
-                =@current_doc[:content]
+                = preserve do
+                    =@current_doc[:content]
             
     = render :partial => "shared/large_format"
 - else
